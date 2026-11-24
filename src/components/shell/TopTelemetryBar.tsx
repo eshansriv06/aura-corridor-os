@@ -95,12 +95,12 @@ export function TopTelemetryBar() {
           {/* Synthetic Database & Backend Live Badge */}
           <Link
             href="/java-backend"
-            className="hidden lg:flex items-center space-x-1.5 px-2 py-0.5 border border-[var(--border-hairline)] bg-[var(--bg-canvas)] rounded-[2px] font-mono text-[10px] hover:border-[var(--text-secondary)] transition-colors"
+            className="flex items-center space-x-1.5 px-2 py-0.5 border border-[var(--border-hairline)] bg-[var(--bg-canvas)] rounded-[2px] font-mono text-[10px] hover:border-[var(--text-secondary)] transition-colors cursor-pointer"
             title="Inspect Synthetic Database & Backend API Engine"
           >
-            <span className={`w-1.5 h-1.5 rounded-full ${backendConnected ? "bg-[var(--accent-green)]" : "bg-[var(--accent-alert)]"}`} />
+            <span className={`w-1.5 h-1.5 rounded-full ${backendConnected ? "bg-[var(--accent-green)] animate-pulse" : "bg-[var(--accent-alert)]"}`} />
             <span className="text-[var(--text-primary)] font-medium">BACKEND LIVE</span>
-            <span className="text-[var(--text-secondary)]">• SYNTHETIC DB {backendLatencyMs}ms</span>
+            <span className="text-[var(--text-secondary)] hidden sm:inline">• SYNTHETIC DB {backendLatencyMs}ms</span>
           </Link>
         </div>
 

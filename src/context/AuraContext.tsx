@@ -298,40 +298,6 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
   const [syntheticDbRecords, setSyntheticDbRecords] = useState<number>(24);
   const [syntheticDbEngine, setSyntheticDbEngine] = useState<string>("Synthetic DynamoDB Memory Engine");
 
-  const syncWithSyntheticDb = useCallback(async () => {
-    try {
-      const t0 = performance.now();
-      const res = await AuraBackendService.getDatabaseSnapshot();
-      const elapsed = Math.round(performance.now() - t0);
-      if (res.success && res.data) {
-        setBackendConnected(true);
-        setBackendLatencyMs(elapsed || 12);
-        setSyntheticDbRecords(res.data.stats.totalRecords);
-        setSyntheticDbEngine(res.data.stats.dbEngine);
-      } else {
-        setBackendConnected(false);
-      }
-    } catch {
-      setBackendConnected(false);
-    }
-  }, []);
-
-  const reseedSyntheticDatabase = useCallback(async () => {
-    try {
-      const res = await AuraBackendService.seedDatabase();
-      if (res.success && res.data) {
-        setSyntheticDbRecords(res.data.stats.totalRecords);
-        setBackendConnected(true);
-      }
-    } catch {
-      // fallback
-    }
-  }, []);
-
-  useEffect(() => {
-    syncWithSyntheticDb();
-  }, [syncWithSyntheticDb]);
-
   useEffect(() => {
     try {
       const stored = localStorage.getItem("aura-theme");
@@ -489,31 +455,6 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
     }
   }, [isAllBaysOccupied, traumaBays, addTelemetryEvent]);
 
-  const toggleBayStatus = useCallback((bayId: string) => {
-    setTraumaBays((prev) =>
-      prev.map((bay) => {
-        if (bay.id === bayId) {
-          const nextStatus: BayStatus = bay.status === "OCCUPIED" ? "AVAILABLE" : "OCCUPIED";
-          AuraBackendService.updateBayStatus(bayId, nextStatus).catch(() => {});
-          return {
-            ...bay,
-            status: nextStatus,
-            reservedForUnit: undefined,
-          };
-        }
-        return bay;
-      })
-    );
-    addTelemetryEvent({
-      timestamp: formatTimestamp(),
-      service: "Amazon DynamoDB",
-      topicOrAction: "UPDATE_ITEM TraumaBays",
-      payload: { bayId, action: "TOGGLE_CAPACITY", syncLatencyMs: 4.1 },
-      latencyMs: 4.1,
-      status: "SUCCESS",
-    });
-  }, [addTelemetryEvent]);
-
   const targetHospital = useMemo(() => {
     const found = hospitals.find((h) => h.isPrimary);
     return found || hospitals[0];
@@ -547,9 +488,100 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
     totalDistanceMeters: 4600,
   });
 
+  // 5b. Live Backend & Synthetic Database Synchronization
+  const syncWithSyntheticDb = useCallback(async () => {
+    try {
+      const t0 = performance.now();
+      const res = await AuraBackendService.getDatabaseSnapshot();
+      const elapsed = Math.round(performance.now() - t0);
+      if (res.success && res.data) {
+        const snapshot = res.data;
+        setBackendConnected(true);
+        setBackendLatencyMs(elapsed || 12);
+        setSyntheticDbRecords(snapshot.stats.totalRecords);
+        setSyntheticDbEngine(snapshot.stats.dbEngine);
+
+        // Synchronize backend data into frontend state
+        if (snapshot.traumaBays && snapshot.traumaBays.length > 0) {
+          setTraumaBays(snapshot.traumaBays);
+        }
+        if (snapshot.waypoints && snapshot.waypoints.length > 0) {
+          setWaypoints(snapshot.waypoints);
+        }
+        if (snapshot.corridor) {
+          setAmbulance((prev) => ({
+            ...prev,
+            corridorLatched: snapshot.corridor.status === "ACTIVE",
+            assignedBayId: snapshot.ambulance?.assignedBayId || prev.assignedBayId,
+            severity: (snapshot.corridor.triageSeverity as TriageSeverity) || prev.severity,
+          }));
+        }
+      } else {
+        setBackendConnected(false);
+      }
+    } catch {
+      setBackendConnected(false);
+    }
+  }, []);
+
+  const reseedSyntheticDatabase = useCallback(async () => {
+    try {
+      const res = await AuraBackendService.seedDatabase();
+      if (res.success && res.data) {
+        setSyntheticDbRecords(res.data.stats.totalRecords);
+        setBackendConnected(true);
+        await syncWithSyntheticDb();
+      }
+    } catch {
+      // fallback
+    }
+  }, [syncWithSyntheticDb]);
+
+  // Periodic heartbeat polling every 2.5s for continuous live backend synchronization
+  useEffect(() => {
+    syncWithSyntheticDb();
+    const interval = setInterval(syncWithSyntheticDb, 2500);
+    return () => clearInterval(interval);
+  }, [syncWithSyntheticDb]);
+
+  const toggleBayStatus = useCallback(
+    async (bayId: string) => {
+      let nextStatus: BayStatus = "OCCUPIED";
+      setTraumaBays((prev) =>
+        prev.map((bay) => {
+          if (bay.id === bayId) {
+            nextStatus = bay.status === "OCCUPIED" ? "AVAILABLE" : "OCCUPIED";
+            return {
+              ...bay,
+              status: nextStatus,
+              reservedForUnit: undefined,
+            };
+          }
+          return bay;
+        })
+      );
+
+      try {
+        await AuraBackendService.updateBayStatus(bayId, nextStatus);
+        await syncWithSyntheticDb();
+      } catch {
+        // fallback
+      }
+
+      addTelemetryEvent({
+        timestamp: formatTimestamp(),
+        service: "Amazon DynamoDB",
+        topicOrAction: "UPDATE_ITEM TraumaBays",
+        payload: { bayId, action: "TOGGLE_CAPACITY", syncLatencyMs: 4.1 },
+        latencyMs: 4.1,
+        status: "SUCCESS",
+      });
+    },
+    [addTelemetryEvent, syncWithSyntheticDb]
+  );
+
   const setTriageSeverity = useCallback(
-    (sev: TriageSeverity) => {
-      AuraBackendService.updateTriageSeverity(sev).catch(() => {});
+    async (sev: TriageSeverity) => {
       let targetBayId = "TB-04";
       if (sev === "CRITICAL") {
         targetBayId = "TB-01";
@@ -593,6 +625,13 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
         };
       });
 
+      try {
+        await AuraBackendService.updateTriageSeverity(sev);
+        await syncWithSyntheticDb();
+      } catch {
+        // fallback
+      }
+
       addTelemetryEvent({
         timestamp: formatTimestamp(),
         service: "AWS Lambda",
@@ -607,21 +646,24 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
         status: "ALERT",
       });
     },
-    [addTelemetryEvent]
+    [addTelemetryEvent, syncWithSyntheticDb]
   );
 
-  const toggleCorridorLatch = useCallback(() => {
-    setAmbulance((prev) => {
-      const nextLatched = !prev.corridorLatched;
-      AuraBackendService.latchGreenCorridor(nextLatched).catch(() => {});
-      if (nextLatched) {
-        // Force green upcoming signals
-        setWaypoints((wps) =>
-          wps.map((w) => (w.type === "signal" ? { ...w, controllerState: "FORCE_GREEN", status: "FORCE_GREEN" } : w))
-        );
-      }
-      return { ...prev, corridorLatched: nextLatched };
-    });
+  const toggleCorridorLatch = useCallback(async () => {
+    const nextLatched = !ambulance.corridorLatched;
+    setAmbulance((prev) => ({ ...prev, corridorLatched: nextLatched }));
+    if (nextLatched) {
+      setWaypoints((wps) =>
+        wps.map((w) => (w.type === "signal" ? { ...w, controllerState: "FORCE_GREEN", status: "FORCE_GREEN" } : w))
+      );
+    }
+
+    try {
+      await AuraBackendService.latchGreenCorridor(nextLatched);
+      await syncWithSyntheticDb();
+    } catch {
+      // fallback
+    }
 
     addTelemetryEvent({
       timestamp: formatTimestamp(),
@@ -629,23 +671,30 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
       topicOrAction: "EXEC masterCorridorLatchHandler",
       payload: {
         unitId: "AMB-UP32-108",
-        action: ambulance.corridorLatched ? "CORRIDOR_RELEASED" : "CORRIDOR_LATCHED",
+        action: nextLatched ? "CORRIDOR_LATCHED" : "CORRIDOR_RELEASED",
         preemptJunctions: ["JNC-01", "JNC-02", "DST-04"],
       },
       latencyMs: 16,
       status: "SUCCESS",
     });
-  }, [ambulance.corridorLatched, addTelemetryEvent]);
+  }, [ambulance.corridorLatched, addTelemetryEvent, syncWithSyntheticDb]);
 
-  const setCorridorLatchState = useCallback((state: boolean) => {
-    AuraBackendService.latchGreenCorridor(state).catch(() => {});
-    setAmbulance((prev) => ({ ...prev, corridorLatched: state }));
-  }, []);
+  const setCorridorLatchState = useCallback(
+    async (state: boolean) => {
+      setAmbulance((prev) => ({ ...prev, corridorLatched: state }));
+      try {
+        await AuraBackendService.latchGreenCorridor(state);
+        await syncWithSyntheticDb();
+      } catch {
+        // fallback
+      }
+    },
+    [syncWithSyntheticDb]
+  );
 
   // 6. Barricade Police Clearance & Manual Overrides
   const clearBarricade = useCallback(
-    (barricadeId: string) => {
-      AuraBackendService.clearBarricade(barricadeId, "Constable R. Verma").catch(() => {});
+    async (barricadeId: string) => {
       setWaypoints((prev) =>
         prev.map((w) => {
           if (w.id === barricadeId) {
@@ -659,6 +708,13 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
           return w;
         })
       );
+
+      try {
+        await AuraBackendService.clearBarricade(barricadeId, "Constable R. Verma");
+        await syncWithSyntheticDb();
+      } catch {
+        // fallback
+      }
 
       addTelemetryEvent({
         timestamp: formatTimestamp(),
@@ -674,12 +730,11 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
         status: "SUCCESS",
       });
     },
-    [addTelemetryEvent]
+    [addTelemetryEvent, syncWithSyntheticDb]
   );
 
   const updateWaypointOverride = useCallback(
-    (id: string, mode: "AUTO_PREEMPT" | "MANUAL_HOLD") => {
-      AuraBackendService.setSignalOverride(id, mode).catch(() => {});
+    async (id: string, mode: "AUTO_PREEMPT" | "MANUAL_HOLD") => {
       setWaypoints((prev) =>
         prev.map((w) => {
           if (w.id === id) {
@@ -694,6 +749,13 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
         })
       );
 
+      try {
+        await AuraBackendService.setSignalOverride(id, mode);
+        await syncWithSyntheticDb();
+      } catch {
+        // fallback
+      }
+
       addTelemetryEvent({
         timestamp: formatTimestamp(),
         service: "AWS IoT Core",
@@ -703,7 +765,7 @@ export function AuraProvider({ children }: { children: React.ReactNode }) {
         status: mode === "MANUAL_HOLD" ? "ALERT" : "SUCCESS",
       });
     },
-    [addTelemetryEvent]
+    [addTelemetryEvent, syncWithSyntheticDb]
   );
 
   // 7. Simulation State Engine
