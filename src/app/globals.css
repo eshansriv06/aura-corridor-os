@@ -1,26 +1,80 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root,
+[data-theme="dark"] {
+  --bg-canvas: #0D0F12;
+  --bg-surface: #16191E;
+  --bg-surface-elevated: #1F232B;
+  --text-primary: #F2F4F7;
+  --text-secondary: #8B929E;
+  --accent-alert: #FF3B30;
+  --accent-green: #00C853;
+  --border-hairline: #2A2F38;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+[data-theme="daylight"] {
+  --bg-canvas: #F4F4F0;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #EAEAE5;
+  --text-primary: #111214;
+  --text-secondary: #52565E;
+  --accent-alert: #D92B2B;
+  --accent-green: #0F8A4B;
+  --border-hairline: #D4D6DC;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-canvas: var(--bg-canvas);
+  --color-surface: var(--bg-surface);
+  --color-surface-elevated: var(--bg-surface-elevated);
+  --color-text-pri: var(--text-primary);
+  --color-text-sec: var(--text-secondary);
+  --color-alert: var(--accent-alert);
+  --color-green: var(--accent-green);
+  --color-border-hl: var(--border-hairline);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-ibm-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tabular nums enforcement globally across numeric telemetry elements */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hairline border helper */
+.border-hl {
+  border-color: var(--border-hairline);
+}
+
+/* Operational copy constraint */
+.operational-copy {
+  max-width: 62ch;
+}
+
+/* Custom scrollbars for industrial utility terminal */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hairline);
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
 }

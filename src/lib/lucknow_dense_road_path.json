@@ -1,0 +1,667 @@
+[
+  {
+    "lat": 26.8467,
+    "lng": 80.9462,
+    "name": "JNC-01: Hazratganj Chauraha"
+  },
+  {
+    "lat": 26.8468,
+    "lng": 80.94605,
+    "name": "JNC-01: Hazratganj Chauraha +25%"
+  },
+  {
+    "lat": 26.8469,
+    "lng": 80.9459,
+    "name": "JNC-01: Hazratganj Chauraha +50%"
+  },
+  {
+    "lat": 26.847,
+    "lng": 80.94575,
+    "name": "JNC-01: Hazratganj Chauraha +75%"
+  },
+  {
+    "lat": 26.8471,
+    "lng": 80.9456,
+    "name": "MG Marg - Halwasiya"
+  },
+  {
+    "lat": 26.847225,
+    "lng": 80.945413,
+    "name": "MG Marg - Halwasiya +25%"
+  },
+  {
+    "lat": 26.84735,
+    "lng": 80.945225,
+    "name": "MG Marg - Halwasiya +50%"
+  },
+  {
+    "lat": 26.847475,
+    "lng": 80.945037,
+    "name": "MG Marg - Halwasiya +75%"
+  },
+  {
+    "lat": 26.8476,
+    "lng": 80.94485,
+    "name": "MG Marg - Sahu Cinema"
+  },
+  {
+    "lat": 26.84775,
+    "lng": 80.944637,
+    "name": "MG Marg - Sahu Cinema +25%"
+  },
+  {
+    "lat": 26.8479,
+    "lng": 80.944425,
+    "name": "MG Marg - Sahu Cinema +50%"
+  },
+  {
+    "lat": 26.84805,
+    "lng": 80.944213,
+    "name": "MG Marg - Sahu Cinema +75%"
+  },
+  {
+    "lat": 26.8482,
+    "lng": 80.944,
+    "name": "MG Marg - Post Office"
+  },
+  {
+    "lat": 26.848363,
+    "lng": 80.94375,
+    "name": "MG Marg - Post Office +25%"
+  },
+  {
+    "lat": 26.848525,
+    "lng": 80.9435,
+    "name": "MG Marg - Post Office +50%"
+  },
+  {
+    "lat": 26.848687,
+    "lng": 80.94325,
+    "name": "MG Marg - Post Office +75%"
+  },
+  {
+    "lat": 26.84885,
+    "lng": 80.943,
+    "name": "MG Marg - Naval Kishore Rd"
+  },
+  {
+    "lat": 26.849013,
+    "lng": 80.94275,
+    "name": "MG Marg - Naval Kishore Rd +25%"
+  },
+  {
+    "lat": 26.849175,
+    "lng": 80.9425,
+    "name": "MG Marg - Naval Kishore Rd +50%"
+  },
+  {
+    "lat": 26.849337,
+    "lng": 80.94225,
+    "name": "MG Marg - Naval Kishore Rd +75%"
+  },
+  {
+    "lat": 26.8495,
+    "lng": 80.942,
+    "name": "MG Marg - Mayfair"
+  },
+  {
+    "lat": 26.8497,
+    "lng": 80.941712,
+    "name": "MG Marg - Mayfair +25%"
+  },
+  {
+    "lat": 26.8499,
+    "lng": 80.941425,
+    "name": "MG Marg - Mayfair +50%"
+  },
+  {
+    "lat": 26.8501,
+    "lng": 80.941137,
+    "name": "MG Marg - Mayfair +75%"
+  },
+  {
+    "lat": 26.8503,
+    "lng": 80.94085,
+    "name": "MG Marg - GPO"
+  },
+  {
+    "lat": 26.850525,
+    "lng": 80.940538,
+    "name": "MG Marg - GPO +25%"
+  },
+  {
+    "lat": 26.85075,
+    "lng": 80.940225,
+    "name": "MG Marg - GPO +50%"
+  },
+  {
+    "lat": 26.850975,
+    "lng": 80.939912,
+    "name": "MG Marg - GPO +75%"
+  },
+  {
+    "lat": 26.8512,
+    "lng": 80.9396,
+    "name": "MG Marg - KD Singh Stadium"
+  },
+  {
+    "lat": 26.851425,
+    "lng": 80.939288,
+    "name": "MG Marg - KD Singh Stadium +25%"
+  },
+  {
+    "lat": 26.85165,
+    "lng": 80.938975,
+    "name": "MG Marg - KD Singh Stadium +50%"
+  },
+  {
+    "lat": 26.851875,
+    "lng": 80.938662,
+    "name": "MG Marg - KD Singh Stadium +75%"
+  },
+  {
+    "lat": 26.8521,
+    "lng": 80.93835,
+    "name": "MG Marg - Stadium Curve"
+  },
+  {
+    "lat": 26.852313,
+    "lng": 80.938063,
+    "name": "MG Marg - Stadium Curve +25%"
+  },
+  {
+    "lat": 26.852525,
+    "lng": 80.937775,
+    "name": "MG Marg - Stadium Curve +50%"
+  },
+  {
+    "lat": 26.852737,
+    "lng": 80.937488,
+    "name": "MG Marg - Stadium Curve +75%"
+  },
+  {
+    "lat": 26.85295,
+    "lng": 80.9372,
+    "name": "MG Marg - Hazrat Mahal Park"
+  },
+  {
+    "lat": 26.853162,
+    "lng": 80.9369,
+    "name": "MG Marg - Hazrat Mahal Park +25%"
+  },
+  {
+    "lat": 26.853375,
+    "lng": 80.9366,
+    "name": "MG Marg - Hazrat Mahal Park +50%"
+  },
+  {
+    "lat": 26.853587,
+    "lng": 80.9363,
+    "name": "MG Marg - Hazrat Mahal Park +75%"
+  },
+  {
+    "lat": 26.8538,
+    "lng": 80.936,
+    "name": "Parivartan Chowk"
+  },
+  {
+    "lat": 26.853912,
+    "lng": 80.935713,
+    "name": "Parivartan Chowk +25%"
+  },
+  {
+    "lat": 26.854025,
+    "lng": 80.935425,
+    "name": "Parivartan Chowk +50%"
+  },
+  {
+    "lat": 26.854138,
+    "lng": 80.935137,
+    "name": "Parivartan Chowk +75%"
+  },
+  {
+    "lat": 26.85425,
+    "lng": 80.93485,
+    "name": "Kaiserbagh Road East"
+  },
+  {
+    "lat": 26.854363,
+    "lng": 80.93455,
+    "name": "Kaiserbagh Road East +25%"
+  },
+  {
+    "lat": 26.854475,
+    "lng": 80.93425,
+    "name": "Kaiserbagh Road East +50%"
+  },
+  {
+    "lat": 26.854588,
+    "lng": 80.93395,
+    "name": "Kaiserbagh Road East +75%"
+  },
+  {
+    "lat": 26.8547,
+    "lng": 80.93365,
+    "name": "Kaiserbagh Approach"
+  },
+  {
+    "lat": 26.854825,
+    "lng": 80.933337,
+    "name": "Kaiserbagh Approach +25%"
+  },
+  {
+    "lat": 26.85495,
+    "lng": 80.933025,
+    "name": "Kaiserbagh Approach +50%"
+  },
+  {
+    "lat": 26.855075,
+    "lng": 80.932713,
+    "name": "Kaiserbagh Approach +75%"
+  },
+  {
+    "lat": 26.8552,
+    "lng": 80.9324,
+    "name": "JNC-02: Kaiserbagh Chauraha"
+  },
+  {
+    "lat": 26.855325,
+    "lng": 80.932113,
+    "name": "JNC-02: Kaiserbagh Chauraha +25%"
+  },
+  {
+    "lat": 26.85545,
+    "lng": 80.931825,
+    "name": "JNC-02: Kaiserbagh Chauraha +50%"
+  },
+  {
+    "lat": 26.855575,
+    "lng": 80.931538,
+    "name": "JNC-02: Kaiserbagh Chauraha +75%"
+  },
+  {
+    "lat": 26.8557,
+    "lng": 80.93125,
+    "name": "Kaiserbagh Circle West"
+  },
+  {
+    "lat": 26.855837,
+    "lng": 80.930963,
+    "name": "Kaiserbagh Circle West +25%"
+  },
+  {
+    "lat": 26.855975,
+    "lng": 80.930675,
+    "name": "Kaiserbagh Circle West +50%"
+  },
+  {
+    "lat": 26.856112,
+    "lng": 80.930387,
+    "name": "Kaiserbagh Circle West +75%"
+  },
+  {
+    "lat": 26.85625,
+    "lng": 80.9301,
+    "name": "Qaiser Bagh Kotwali"
+  },
+  {
+    "lat": 26.856412,
+    "lng": 80.929812,
+    "name": "Qaiser Bagh Kotwali +25%"
+  },
+  {
+    "lat": 26.856575,
+    "lng": 80.929525,
+    "name": "Qaiser Bagh Kotwali +50%"
+  },
+  {
+    "lat": 26.856738,
+    "lng": 80.929237,
+    "name": "Qaiser Bagh Kotwali +75%"
+  },
+  {
+    "lat": 26.8569,
+    "lng": 80.92895,
+    "name": "Baradari Approach"
+  },
+  {
+    "lat": 26.857075,
+    "lng": 80.928663,
+    "name": "Baradari Approach +25%"
+  },
+  {
+    "lat": 26.85725,
+    "lng": 80.928375,
+    "name": "Baradari Approach +50%"
+  },
+  {
+    "lat": 26.857425,
+    "lng": 80.928088,
+    "name": "Baradari Approach +75%"
+  },
+  {
+    "lat": 26.8576,
+    "lng": 80.9278,
+    "name": "Old High Court Road"
+  },
+  {
+    "lat": 26.857775,
+    "lng": 80.927513,
+    "name": "Old High Court Road +25%"
+  },
+  {
+    "lat": 26.85795,
+    "lng": 80.927225,
+    "name": "Old High Court Road +50%"
+  },
+  {
+    "lat": 26.858125,
+    "lng": 80.926937,
+    "name": "Old High Court Road +75%"
+  },
+  {
+    "lat": 26.8583,
+    "lng": 80.92665,
+    "name": "Kutchery Road"
+  },
+  {
+    "lat": 26.8585,
+    "lng": 80.926337,
+    "name": "Kutchery Road +25%"
+  },
+  {
+    "lat": 26.8587,
+    "lng": 80.926025,
+    "name": "Kutchery Road +50%"
+  },
+  {
+    "lat": 26.8589,
+    "lng": 80.925713,
+    "name": "Kutchery Road +75%"
+  },
+  {
+    "lat": 26.8591,
+    "lng": 80.9254,
+    "name": "Collectorate Junction"
+  },
+  {
+    "lat": 26.8593,
+    "lng": 80.9251,
+    "name": "Collectorate Junction +25%"
+  },
+  {
+    "lat": 26.8595,
+    "lng": 80.9248,
+    "name": "Collectorate Junction +50%"
+  },
+  {
+    "lat": 26.8597,
+    "lng": 80.9245,
+    "name": "Collectorate Junction +75%"
+  },
+  {
+    "lat": 26.8599,
+    "lng": 80.9242,
+    "name": "The Residency South Road"
+  },
+  {
+    "lat": 26.8601,
+    "lng": 80.9239,
+    "name": "The Residency South Road +25%"
+  },
+  {
+    "lat": 26.8603,
+    "lng": 80.9236,
+    "name": "The Residency South Road +50%"
+  },
+  {
+    "lat": 26.8605,
+    "lng": 80.9233,
+    "name": "The Residency South Road +75%"
+  },
+  {
+    "lat": 26.8607,
+    "lng": 80.923,
+    "name": "The Residency Gate"
+  },
+  {
+    "lat": 26.8609,
+    "lng": 80.9227,
+    "name": "The Residency Gate +25%"
+  },
+  {
+    "lat": 26.8611,
+    "lng": 80.9224,
+    "name": "The Residency Gate +50%"
+  },
+  {
+    "lat": 26.8613,
+    "lng": 80.9221,
+    "name": "The Residency Gate +75%"
+  },
+  {
+    "lat": 26.8615,
+    "lng": 80.9218,
+    "name": "Shah Mina Dargah Approach"
+  },
+  {
+    "lat": 26.861625,
+    "lng": 80.9216,
+    "name": "Shah Mina Dargah Approach +25%"
+  },
+  {
+    "lat": 26.86175,
+    "lng": 80.9214,
+    "name": "Shah Mina Dargah Approach +50%"
+  },
+  {
+    "lat": 26.861875,
+    "lng": 80.9212,
+    "name": "Shah Mina Dargah Approach +75%"
+  },
+  {
+    "lat": 26.862,
+    "lng": 80.921,
+    "name": "Balrampur Hospital Gate"
+  },
+  {
+    "lat": 26.8621,
+    "lng": 80.920875,
+    "name": "Balrampur Hospital Gate +25%"
+  },
+  {
+    "lat": 26.8622,
+    "lng": 80.92075,
+    "name": "Balrampur Hospital Gate +50%"
+  },
+  {
+    "lat": 26.8623,
+    "lng": 80.920625,
+    "name": "Balrampur Hospital Gate +75%"
+  },
+  {
+    "lat": 26.8624,
+    "lng": 80.9205,
+    "name": "BAR-03: Shah Mina Gate"
+  },
+  {
+    "lat": 26.862575,
+    "lng": 80.920288,
+    "name": "BAR-03: Shah Mina Gate +25%"
+  },
+  {
+    "lat": 26.86275,
+    "lng": 80.920075,
+    "name": "BAR-03: Shah Mina Gate +50%"
+  },
+  {
+    "lat": 26.862925,
+    "lng": 80.919863,
+    "name": "BAR-03: Shah Mina Gate +75%"
+  },
+  {
+    "lat": 26.8631,
+    "lng": 80.91965,
+    "name": "Shah Mina Road East"
+  },
+  {
+    "lat": 26.863287,
+    "lng": 80.919425,
+    "name": "Shah Mina Road East +25%"
+  },
+  {
+    "lat": 26.863475,
+    "lng": 80.9192,
+    "name": "Shah Mina Road East +50%"
+  },
+  {
+    "lat": 26.863663,
+    "lng": 80.918975,
+    "name": "Shah Mina Road East +75%"
+  },
+  {
+    "lat": 26.86385,
+    "lng": 80.91875,
+    "name": "KGMU Dental College"
+  },
+  {
+    "lat": 26.86405,
+    "lng": 80.918525,
+    "name": "KGMU Dental College +25%"
+  },
+  {
+    "lat": 26.86425,
+    "lng": 80.9183,
+    "name": "KGMU Dental College +50%"
+  },
+  {
+    "lat": 26.86445,
+    "lng": 80.918075,
+    "name": "KGMU Dental College +75%"
+  },
+  {
+    "lat": 26.86465,
+    "lng": 80.91785,
+    "name": "KGMU Administrative Block"
+  },
+  {
+    "lat": 26.864863,
+    "lng": 80.917625,
+    "name": "KGMU Administrative Block +25%"
+  },
+  {
+    "lat": 26.865075,
+    "lng": 80.9174,
+    "name": "KGMU Administrative Block +50%"
+  },
+  {
+    "lat": 26.865288,
+    "lng": 80.917175,
+    "name": "KGMU Administrative Block +75%"
+  },
+  {
+    "lat": 26.8655,
+    "lng": 80.91695,
+    "name": "Shah Mina Road / Bullah Rd"
+  },
+  {
+    "lat": 26.865713,
+    "lng": 80.916725,
+    "name": "Shah Mina Road / Bullah Rd +25%"
+  },
+  {
+    "lat": 26.865925,
+    "lng": 80.9165,
+    "name": "Shah Mina Road / Bullah Rd +50%"
+  },
+  {
+    "lat": 26.866138,
+    "lng": 80.916275,
+    "name": "Shah Mina Road / Bullah Rd +75%"
+  },
+  {
+    "lat": 26.86635,
+    "lng": 80.91605,
+    "name": "KGMU Faculty Wing"
+  },
+  {
+    "lat": 26.866563,
+    "lng": 80.915825,
+    "name": "KGMU Faculty Wing +25%"
+  },
+  {
+    "lat": 26.866775,
+    "lng": 80.9156,
+    "name": "KGMU Faculty Wing +50%"
+  },
+  {
+    "lat": 26.866988,
+    "lng": 80.915375,
+    "name": "KGMU Faculty Wing +75%"
+  },
+  {
+    "lat": 26.8672,
+    "lng": 80.91515,
+    "name": "Victoria Street Crossing"
+  },
+  {
+    "lat": 26.867413,
+    "lng": 80.91495,
+    "name": "Victoria Street Crossing +25%"
+  },
+  {
+    "lat": 26.867625,
+    "lng": 80.91475,
+    "name": "Victoria Street Crossing +50%"
+  },
+  {
+    "lat": 26.867838,
+    "lng": 80.91455,
+    "name": "Victoria Street Crossing +75%"
+  },
+  {
+    "lat": 26.86805,
+    "lng": 80.91435,
+    "name": "Chowk Medical Avenue"
+  },
+  {
+    "lat": 26.868237,
+    "lng": 80.914212,
+    "name": "Chowk Medical Avenue +25%"
+  },
+  {
+    "lat": 26.868425,
+    "lng": 80.914075,
+    "name": "Chowk Medical Avenue +50%"
+  },
+  {
+    "lat": 26.868613,
+    "lng": 80.913938,
+    "name": "Chowk Medical Avenue +75%"
+  },
+  {
+    "lat": 26.8688,
+    "lng": 80.9138,
+    "name": "KGMU Trauma Triage Gate"
+  },
+  {
+    "lat": 26.86895,
+    "lng": 80.913725,
+    "name": "KGMU Trauma Triage Gate +25%"
+  },
+  {
+    "lat": 26.8691,
+    "lng": 80.91365,
+    "name": "KGMU Trauma Triage Gate +50%"
+  },
+  {
+    "lat": 26.86925,
+    "lng": 80.913575,
+    "name": "KGMU Trauma Triage Gate +75%"
+  },
+  {
+    "lat": 26.8694,
+    "lng": 80.9135,
+    "name": "DST-04: KGMU Trauma Centre"
+  }
+]
